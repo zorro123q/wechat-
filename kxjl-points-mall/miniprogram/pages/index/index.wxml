@@ -1,0 +1,171 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 顶部欢迎区域 -->
+  <view class="header">
+    <view class="header-content">
+      <view class="welcome">
+        <text class="welcome-text">你好，{{userInfo.name || '学员'}}</text>
+        <text class="welcome-sub">欢迎来到训机师学院</text>
+      </view>
+      <image class="logo" src="/images/logo.png" mode="aspectFit"></image>
+    </view>
+  </view>
+
+  <!-- 用户信息卡片 -->
+  <view class="user-card" bindtap="goToProfile">
+    <view class="user-info">
+      <image class="avatar" src="{{userInfo.avatar || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+      <view class="user-detail">
+        <view class="user-name-row">
+          <text class="user-name">{{userInfo.name || '未设置姓名'}}</text>
+          <view class="level-badge level-{{levelInfo.key}}">
+            <text class="level-text">{{levelInfo.name}}</text>
+          </view>
+        </view>
+        <view class="user-id">ID: {{userInfo._id || '--'}}</view>
+      </view>
+    </view>
+    <view class="points-section">
+      <view class="points-item">
+        <text class="points-value">{{formatPoints(userInfo.points)}}</text>
+        <text class="points-label">可用积分</text>
+      </view>
+      <view class="points-divider"></view>
+      <view class="points-item">
+        <text class="points-value">{{formatPoints(userInfo.totalPoints)}}</text>
+        <text class="points-label">累计积分</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="card">
+    <view class="quick-menu">
+      <view class="menu-item" bindtap="goToPointsDetail">
+        <view class="menu-icon points-icon">
+          <text>📊</text>
+        </view>
+        <text class="menu-text">积分明细</text>
+      </view>
+      <view class="menu-item" bindtap="goToExchangeRecords">
+        <view class="menu-icon record-icon">
+          <text>📦</text>
+        </view>
+        <text class="menu-text">兑换记录</text>
+      </view>
+      <view class="menu-item" bindtap="showLevelGuide">
+        <view class="menu-icon level-icon">
+          <text>🏆</text>
+        </view>
+        <text class="menu-text">等级说明</text>
+      </view>
+      <view class="menu-item" bindtap="goToMall">
+        <view class="menu-icon mall-icon">
+          <text>🛒</text>
+        </view>
+        <text class="menu-text">积分商城</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 公告轮播 -->
+  <view class="card" wx:if="{{notices.length > 0}}">
+    <view class="section-header">
+      <text class="section-title">公告通知</text>
+    </view>
+    <swiper class="notice-swiper" indicator-dots autoplay circular interval="3000">
+      <swiper-item wx:for="{{notices}}" wx:key="_id">
+        <view class="notice-item" bindtap="viewNotice" data-notice="{{item}}">
+          <text class="notice-tag">公告</text>
+          <text class="notice-text">{{item.title}}</text>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 等级进度 -->
+  <view class="card" wx:if="{{levelInfo.nextLevel}}">
+    <view class="section-header">
+      <text class="section-title">升级进度</text>
+      <text class="section-more" bindtap="showLevelGuide">查看详情 ></text>
+    </view>
+    <view class="level-progress">
+      <view class="level-info-row">
+        <text class="current-level">{{levelInfo.name}}</text>
+        <view class="progress-container">
+          <view class="progress-bar">
+            <view class="progress-fill" style="width: {{levelInfo.progress}}%;"></view>
+          </view>
+          <text class="progress-text">{{levelInfo.progress.toFixed(0)}}%</text>
+        </view>
+        <text class="next-level">{{levelInfo.nextLevel.name}}</text>
+      </view>
+      <view class="level-tip">
+        再获得 <text class="text-primary font-bold">{{formatPoints(levelInfo.pointsToNext)}}</text> 积分即可升级
+      </view>
+    </view>
+  </view>
+
+  <!-- 热门商品 -->
+  <view class="card">
+    <view class="section-header">
+      <text class="section-title">热门兑换</text>
+      <text class="section-more" bindtap="goToMall">更多商品 ></text>
+    </view>
+    <view class="goods-list">
+      <view class="goods-item" wx:for="{{hotGoods}}" wx:key="_id" bindtap="goToGoodsDetail" data-id="{{item._id}}">
+        <image class="goods-image" src="{{item.images[0] || '/images/default-goods.png'}}" mode="aspectFill"></image>
+        <view class="goods-info">
+          <text class="goods-name">{{item.name}}</text>
+          <view class="goods-bottom">
+            <text class="goods-points">{{item.points}} 积分</text>
+            <text class="goods-sold">已兑 {{item.sold || 0}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="empty-tip" wx:if="{{hotGoods.length === 0}}">
+        暂无热门商品
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部留白 -->
+  <view class="bottom-space"></view>
+</view>
+
+<!-- 等级说明弹窗 -->
+<view class="modal-mask" wx:if="{{showLevelModal}}" bindtap="hideLevelGuide">
+  <view class="modal-content level-modal" catchtap="stopPropagation">
+    <view class="modal-header">
+      <text class="modal-title">等级说明</text>
+      <text class="modal-close" bindtap="hideLevelGuide">×</text>
+    </view>
+    <view class="modal-body">
+      <view class="level-item" wx:for="{{levels}}" wx:key="key">
+        <view class="level-icon-wrapper level-{{item.key}}">
+          <text class="level-emoji">{{item.key === 'senior' ? '👑' : item.key === 'intermediate' ? '⭐' : '🌱'}}</text>
+        </view>
+        <view class="level-detail">
+          <text class="level-name">{{item.name}}</text>
+          <text class="level-require">{{item.minPoints}}积分起</text>
+        </view>
+      </view>
+      <view class="divider"></view>
+      <view class="privileges">
+        <text class="privileges-title">等级特权</text>
+        <view class="privilege-item">
+          <text class="privilege-dot"></text>
+          <text class="privilege-text">初级训机师：享受基础兑换权益</text>
+        </view>
+        <view class="privilege-item">
+          <text class="privilege-dot"></text>
+          <text class="privilege-text">中级训机师：部分商品享受积分折扣</text>
+        </view>
+        <view class="privilege-item">
+          <text class="privilege-dot"></text>
+          <text class="privilege-text">高级训机师：VIP专属商品、优先兑换权</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

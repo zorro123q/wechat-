@@ -1,0 +1,438 @@
+/* goods-detail.wxss */
+.container {
+  min-height: 100vh;
+  padding-bottom: 140rpx;
+}
+
+/* 商品图片轮播 */
+.goods-swiper {
+  width: 100%;
+  height: 750rpx;
+  background: #f5f5f5;
+}
+
+.swiper-image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 商品信息 */
+.goods-info-section {
+  background: #ffffff;
+  padding: 30rpx;
+}
+
+.goods-name-row {
+  margin-bottom: 20rpx;
+}
+
+.goods-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+  line-height: 1.4;
+}
+
+.goods-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.price-left {
+  display: flex;
+  align-items: baseline;
+}
+
+.points-label {
+  font-size: 24rpx;
+  color: #ff4d4f;
+  margin-right: 4rpx;
+}
+
+.points-value {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #ff4d4f;
+}
+
+.original-points {
+  font-size: 24rpx;
+  color: #999999;
+  text-decoration: line-through;
+  margin-left: 16rpx;
+}
+
+.sold-count {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.stock-info {
+  margin-top: 20rpx;
+}
+
+.stock-text {
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.stock-text.out-of-stock {
+  color: #ff4d4f;
+}
+
+/* 分割线 */
+.divider-section {
+  height: 20rpx;
+  background: #f5f5f5;
+}
+
+/* 积分提示 */
+.points-tip-section {
+  background: #ffffff;
+  padding: 30rpx;
+}
+
+.points-tip-content {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.points-tip-text {
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.points-tip-value {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #1890ff;
+  margin: 0 8rpx;
+}
+
+.points-tip-diff {
+  font-size: 26rpx;
+  color: #ff4d4f;
+}
+
+/* 商品详情 */
+.detail-section {
+  background: #ffffff;
+  padding: 30rpx;
+  margin-top: 20rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.detail-content {
+  line-height: 1.8;
+}
+
+.detail-text {
+  font-size: 28rpx;
+  color: #666666;
+}
+
+/* 底部留白 */
+.bottom-space {
+  height: 40rpx;
+}
+
+/* 底部操作栏 */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  box-shadow: 0 -2rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+.bottom-left {
+  display: flex;
+}
+
+.bar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 40rpx;
+}
+
+.bar-icon {
+  font-size: 36rpx;
+}
+
+.bar-text {
+  font-size: 22rpx;
+  color: #999999;
+  margin-top: 4rpx;
+}
+
+.bottom-right {
+  flex: 1;
+}
+
+.btn-exchange {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+  color: #ffffff;
+  font-size: 32rpx;
+  border-radius: 48rpx;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.btn-exchange.disabled {
+  background: #d9d9d9;
+  color: #999999;
+}
+
+.btn-exchange::after {
+  border: none;
+}
+
+/* 加载状态 */
+.loading-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid #f0f0f0;
+  border-top-color: #1890ff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  font-size: 26rpx;
+  color: #999999;
+  margin-top: 20rpx;
+}
+
+/* 弹窗 */
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  width: 600rpx;
+  max-height: 80vh;
+  background: #ffffff;
+  border-radius: 24rpx;
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: 30rpx;
+  text-align: center;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.modal-body {
+  padding: 30rpx;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.modal-goods-info {
+  display: flex;
+  align-items: center;
+}
+
+.modal-goods-image {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 16rpx;
+  background: #f5f5f5;
+}
+
+.modal-goods-detail {
+  flex: 1;
+  margin-left: 20rpx;
+}
+
+.modal-goods-name {
+  font-size: 28rpx;
+  color: #333333;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+}
+
+.modal-goods-points {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #ff4d4f;
+  margin-top: 12rpx;
+  display: block;
+}
+
+.divider {
+  height: 1rpx;
+  background: #f0f0f0;
+  margin: 30rpx 0;
+}
+
+.address-section {
+  margin-bottom: 20rpx;
+}
+
+.address-row {
+  margin-bottom: 12rpx;
+}
+
+.address-label {
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.address-info {
+  background: #f9f9f9;
+  border-radius: 12rpx;
+  padding: 20rpx;
+}
+
+.address-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-right: 20rpx;
+}
+
+.address-phone {
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.address-detail {
+  font-size: 26rpx;
+  color: #666666;
+  margin-top: 8rpx;
+  display: block;
+}
+
+.address-select {
+  background: #f9f9f9;
+  border: 2rpx dashed #d9d9d9;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  text-align: center;
+}
+
+.address-placeholder {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+.remark-section {
+  margin-bottom: 20rpx;
+}
+
+.remark-label {
+  font-size: 26rpx;
+  color: #666666;
+  margin-bottom: 12rpx;
+  display: block;
+}
+
+.remark-input {
+  background: #f9f9f9;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+}
+
+.points-warning {
+  display: flex;
+  align-items: center;
+  background: #fff7e6;
+  border-radius: 12rpx;
+  padding: 20rpx;
+}
+
+.warning-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+}
+
+.warning-text {
+  font-size: 24rpx;
+  color: #fa8c16;
+}
+
+.modal-footer {
+  display: flex;
+  padding: 30rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.modal-btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  border-radius: 48rpx;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modal-btn::after {
+  border: none;
+}
+
+.modal-btn-cancel {
+  background: #f0f0f0;
+  color: #666666;
+  margin-right: 20rpx;
+}
+
+.modal-btn-confirm {
+  background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+  color: #ffffff;
+}
