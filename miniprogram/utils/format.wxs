@@ -1,0 +1,68 @@
+// miniprogram/utils/format.wxs
+
+// WXS中的函数，用于给单个数字补0
+function padZero(num) {
+  var s = num.toString();
+  return s[1] ? s : '0' + s;
+}
+
+/**
+ * WXS中格式化时间
+ * @param {Date|string|number} date 日期对象或时间戳
+ * @param {string} format 格式化字符串
+ * @returns {string} 格式化后的时间字符串
+ */
+function formatTime(date, format) {
+  if (!date) return '';
+  var fmt = format || 'YYYY-MM-DD HH:mm:ss';
+  var d = getDate(date); // WXS 使用 getDate() 创建日期对象
+
+  if (!d) return '';
+
+  var year = d.getFullYear();
+  var month = padZero(d.getMonth() + 1);
+  var day = padZero(d.getDate());
+  var hour = padZero(d.getHours());
+  var minute = padZero(d.getMinutes());
+  var second = padZero(d.getSeconds());
+
+  return fmt
+    .replace('YYYY', year)
+    .replace('MM', month)
+    .replace('DD', day)
+    .replace('HH', hour)
+    .replace('mm', minute)
+    .replace('ss', second);
+}
+
+// WXS中用于给数字添加千分位的正则表达式
+var numberReg = getRegExp('\\B(?=(\\d{3})+(?!\\d))', 'g');
+
+/**
+ * WXS中格式化数字，添加千分位
+ * @param {number} num 数字
+ * @returns {string} 格式化后的字符串
+ */
+function formatNumber(num) {
+  if (typeof num !== 'number') return '0';
+  return num.toString().replace(numberReg, ',');
+}
+
+/**
+ * WXS中格式化积分显示
+ * @param {number} points 积分
+ * @returns {string} 格式化后的积分字符串
+ */
+function formatPoints(points) {
+  if (typeof points !== 'number') return '0';
+  if (points >= 10000) {
+    return (points / 10000).toFixed(1) + '万';
+  }
+  return formatNumber(points);
+}
+
+// 导出模块
+module.exports = {
+  formatTime: formatTime,
+  formatPoints: formatPoints
+};

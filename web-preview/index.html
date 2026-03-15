@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科讯嘉联训机师学苑 - 积分管理平台</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 手机模拟器 -->
+        <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+                <!-- 页面切换标签 -->
+                <div class="page-tabs">
+                    <button class="page-tab active" data-page="home">首页</button>
+                    <button class="page-tab" data-page="mall">积分商城</button>
+                    <button class="page-tab" data-page="profile">我的</button>
+                    <button class="page-tab" data-page="admin">管理后台</button>
+                </div>
+
+                <!-- 首页 -->
+                <div class="page active" id="page-home">
+                    <div class="page-header">
+                        <span class="page-title">科讯嘉联训机师学苑</span>
+                    </div>
+                    <!-- 用户信息卡片 -->
+                    <div class="home-header">
+                        <div class="welcome-section">
+                            <div class="welcome-text">
+                                <p class="welcome-main">你好，张学员</p>
+                                <p class="welcome-sub">欢迎来到训机师学苑</p>
+                            </div>
+                            <div class="user-avatar"></div>
+                        </div>
+                        <div class="user-card">
+                            <div class="user-info">
+                                <img src="" alt="" class="avatar">
+                                <div class="user-detail">
+                                    <div class="name-row">
+                                        <span class="user-name">张学员</span>
+                                        <span class="level-badge level-intermediate">中级训机师</span>
+                                    </div>
+                                    <p class="user-id">ID: user_001</p>
+                                </div>
+                            </div>
+                            <div class="points-section">
+                                <div class="points-item">
+                                    <p class="points-value">2,580</p>
+                                    <p class="points-label">可用积分</p>
+                                </div>
+                                <div class="points-divider"></div>
+                                <div class="points-item">
+                                    <p class="points-value">3,200</p>
+                                    <p class="points-label">累计积分</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 快捷入口 -->
+                    <div class="card">
+                        <div class="quick-menu">
+                            <div class="menu-item">
+                                <div class="menu-icon points-icon">📊</div>
+                                <p class="menu-text">积分明细</p>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-icon record-icon">📦</div>
+                                <p class="menu-text">兑换记录</p>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-icon level-icon">🏆</div>
+                                <p class="menu-text">等级说明</p>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-icon mall-icon">🛒</div>
+                                <p class="menu-text">积分商城</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 公告 -->
+                    <div class="card">
+                        <div class="section-header">
+                            <span class="section-title">公告通知</span>
+                        </div>
+                        <div class="notice-item">
+                            <span class="notice-tag">公告</span>
+                            <span class="notice-text">欢迎来到训机师学苑积分商城！</span>
+                        </div>
+                    </div>
+
+                    <!-- 等级进度 -->
+                    <div class="card">
+                        <div class="section-header">
+                            <span class="section-title">升级进度</span>
+                            <span class="section-more">查看详情 ></span>
+                        </div>
+                        <div class="level-progress">
+                            <div class="level-info-row">
+                                <span class="level-current">中级训机师</span>
+                                <div class="progress-wrap">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 32%;"></div>
+                                    </div>
+                                    <span class="progress-text">32%</span>
+                                </div>
+                                <span class="level-next">高级训机师</span>
+                            </div>
+                            <p class="level-tip">再获得 <span class="highlight">2,420</span> 积分即可升级</p>
+                        </div>
+                    </div>
+
+                    <!-- 热门商品 -->
+                    <div class="card">
+                        <div class="section-header">
+                            <span class="section-title">热门兑换</span>
+                            <span class="section-more">更多商品 ></span>
+                        </div>
+                        <div class="goods-grid">
+                            <div class="goods-card">
+                                <div class="goods-img"></div>
+                                <div class="goods-info">
+                                    <p class="goods-name">定制笔记本</p>
+                                    <div class="goods-bottom">
+                                        <span class="goods-points">500 积分</span>
+                                        <span class="goods-sold">已兑 25</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goods-card">
+                                <div class="goods-img"></div>
+                                <div class="goods-info">
+                                    <p class="goods-name">精美水杯</p>
+                                    <div class="goods-bottom">
+                                        <span class="goods-points">1,000 积分</span>
+                                        <span class="goods-sold">已兑 12</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 积分商城 -->
+                <div class="page" id="page-mall">
+                    <div class="page-header">
+                        <span class="page-title">积分商城</span>
+                    </div>
+                    <!-- 搜索栏 -->
+                    <div class="search-bar">
+                        <div class="search-input-wrap">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" class="search-input" placeholder="搜索商品...">
+                        </div>
+                    </div>
+                    <!-- 分类 -->
+                    <div class="category-scroll">
+                        <div class="category-list">
+                            <div class="category-item active">全部</div>
+                            <div class="category-item">🎁 实物奖品</div>
+                            <div class="category-item">💳 虚拟商品</div>
+                            <div class="category-item">🎫 优惠券</div>
+                        </div>
+                    </div>
+                    <!-- 积分提示 -->
+                    <div class="points-tip">
+                        <span>当前积分：</span>
+                        <span class="points-highlight">2,580</span>
+                    </div>
+                    <!-- 商品列表 -->
+                    <div class="mall-goods-grid">
+                        <div class="mall-goods-card">
+                            <div class="mall-goods-img"></div>
+                            <div class="mall-goods-info">
+                                <p class="mall-goods-name">定制笔记本</p>
+                                <div class="mall-goods-price">
+                                    <span class="price-points">500</span>
+                                    <span class="price-unit">积分</span>
+                                    <span class="price-original">800</span>
+                                </div>
+                                <span class="stock-info">库存 100</span>
+                            </div>
+                            <button class="exchange-btn">立即兑换</button>
+                        </div>
+                        <div class="mall-goods-card">
+                            <div class="mall-goods-img"></div>
+                            <div class="mall-goods-info">
+                                <p class="mall-goods-name">精美水杯</p>
+                                <div class="mall-goods-price">
+                                    <span class="price-points">1,000</span>
+                                    <span class="price-unit">积分</span>
+                                    <span class="price-original">1,500</span>
+                                </div>
+                                <span class="stock-info">库存 50</span>
+                            </div>
+                            <button class="exchange-btn">立即兑换</button>
+                        </div>
+                        <div class="mall-goods-card">
+                            <div class="mall-goods-img"></div>
+                            <div class="mall-goods-info">
+                                <p class="mall-goods-name">学习课程券</p>
+                                <div class="mall-goods-price">
+                                    <span class="price-points">2,000</span>
+                                    <span class="price-unit">积分</span>
+                                </div>
+                                <span class="stock-info">库存 200</span>
+                            </div>
+                            <button class="exchange-btn">立即兑换</button>
+                        </div>
+                        <div class="mall-goods-card">
+                            <div class="mall-goods-img"></div>
+                            <div class="mall-goods-info">
+                                <p class="mall-goods-name">定制T恤</p>
+                                <div class="mall-goods-price">
+                                    <span class="price-points">3,000</span>
+                                    <span class="price-unit">积分</span>
+                                    <span class="price-original">4,000</span>
+                                </div>
+                                <span class="stock-info">库存 30</span>
+                            </div>
+                            <button class="exchange-btn exchange-btn-disabled">积分不足</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 个人中心 -->
+                <div class="page" id="page-profile">
+                    <div class="profile-header">
+                        <div class="profile-user-info">
+                            <div class="profile-avatar"></div>
+                            <div class="profile-detail">
+                                <div class="profile-name-row">
+                                    <span class="profile-name">张学员</span>
+                                    <span class="level-badge level-intermediate">中级训机师</span>
+                                </div>
+                                <p class="profile-phone">138****8888</p>
+                            </div>
+                        </div>
+                        <div class="profile-points-card">
+                            <div class="profile-points-item">
+                                <p class="profile-points-value">2,580</p>
+                                <p class="profile-points-label">可用积分</p>
+                            </div>
+                            <div class="profile-points-divider"></div>
+                            <div class="profile-points-item">
+                                <p class="profile-points-value">3,200</p>
+                                <p class="profile-points-label">累计积分</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 功能菜单 -->
+                    <div class="card">
+                        <div class="menu-list">
+                            <div class="menu-list-item">
+                                <div class="menu-list-left">
+                                    <span class="menu-list-icon">📊</span>
+                                    <span class="menu-list-text">积分明细</span>
+                                </div>
+                                <span class="menu-list-arrow">></span>
+                            </div>
+                            <div class="menu-list-item">
+                                <div class="menu-list-left">
+                                    <span class="menu-list-icon">📦</span>
+                                    <span class="menu-list-text">兑换记录</span>
+                                </div>
+                                <span class="menu-list-arrow">></span>
+                            </div>
+                            <div class="menu-list-item">
+                                <div class="menu-list-left">
+                                    <span class="menu-list-icon">📍</span>
+                                    <span class="menu-list-text">收货地址</span>
+                                </div>
+                                <span class="menu-list-arrow">></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="menu-list">
+                            <div class="menu-list-item">
+                                <div class="menu-list-left">
+                                    <span class="menu-list-icon">💬</span>
+                                    <span class="menu-list-text">联系客服</span>
+                                </div>
+                                <span class="menu-list-arrow">></span>
+                            </div>
+                            <div class="menu-list-item">
+                                <div class="menu-list-left">
+                                    <span class="menu-list-icon">ℹ️</span>
+                                    <span class="menu-list-text">关于我们</span>
+                                </div>
+                                <span class="menu-list-arrow">></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 管理后台 -->
+                <div class="page" id="page-admin">
+                    <div class="admin-header">
+                        <div class="admin-info">
+                            <span class="admin-icon">🔧</span>
+                            <div class="admin-text">
+                                <p class="admin-title">管理后台</p>
+                                <p class="admin-desc">训机师学苑积分管理</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <p class="menu-title">积分管理</p>
+                        <div class="menu-list">
+                            <div class="menu-list-item">
+                                <div class="menu-list-left">
+                                    <span class="menu-list-icon">➕</span>
+                                    <span class="menu-list-text">发放积分</span>
+                                </div>
+                                <span class="menu-list-arrow">></span>
+                            </div>
+                            <div class="menu-list-item">
+                                <div class="menu-list-left">
+                                    <span class="menu-list-icon">📊</span>
+                                    <span class="menu-list-text">积分记录</span>
+                                </div>
+                                <span class="menu-list-arrow">></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <p class="menu-title">订单管理</p>
+                        <div class="menu-list">
+                            <div class="menu-list-item">
+                                <div class="menu-list-left">
+                                    <span class="menu-list-icon">✅</span>
+                                    <span class="menu-list-text">核销订单</span>
+                                </div>
+                                <span class="menu-list-arrow">></span>
+                            </div>
+                            <div class="menu-list-item">
+                                <div class="menu-list-left">
+                                    <span class="menu-list-icon">📦</span>
+                                    <span class="menu-list-text">订单列表</span>
+                                </div>
+                                <span class="menu-list-arrow">></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 快速操作 -->
+                    <div class="quick-actions">
+                        <div class="quick-action-btn">
+                            <span class="quick-action-icon">🎁</span>
+                            <span class="quick-action-text">快速发积分</span>
+                        </div>
+                        <div class="quick-action-btn">
+                            <span class="quick-action-icon">📱</span>
+                            <span class="quick-action-text">扫码核销</span>
+                        </div>
+                    </div>
+
+                    <!-- 等级设置演示 -->
+                    <div class="card">
+                        <p class="menu-title">等级管理</p>
+                        <div class="level-setting-demo">
+                            <p class="setting-tip">等级通过手机号/身份证从系统数据库匹配</p>
+                            <div class="level-user-demo">
+                                <div class="level-user-item">
+                                    <span class="user-field">手机号：</span>
+                                    <span class="user-value">138****8888</span>
+                                    <span class="user-level level-intermediate">→ 中级训机师</span>
+                                </div>
+                                <div class="level-user-item">
+                                    <span class="user-field">身份证：</span>
+                                    <span class="user-value">110***********1111</span>
+                                    <span class="user-level level-senior">→ 高级训机师</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 说明面板 -->
+        <div class="info-panel">
+            <h1>科讯嘉联训机师学苑</h1>
+            <h2>积分管理平台 - 效果预览</h2>
+            <div class="info-section">
+                <h3>📋 功能特性</h3>
+                <ul>
+                    <li>学员积分查询与明细记录</li>
+                    <li>等级体系（初级/中级/高级训机师）</li>
+                    <li>积分商城商品浏览与兑换</li>
+                    <li>订单管理与核销</li>
+                    <li>管理员积分发放功能</li>
+                </ul>
+            </div>
+            <div class="info-section">
+                <h3>🎯 等级说明</h3>
+                <div class="level-cards">
+                    <div class="level-card junior">
+                        <div class="level-emoji">🌱</div>
+                        <h4>初级训机师</h4>
+                        <p>通过手机号/身份证匹配</p>
+                    </div>
+                    <div class="level-card intermediate">
+                        <div class="level-emoji">⭐</div>
+                        <h4>中级训机师</h4>
+                        <p>通过手机号/身份证匹配</p>
+                    </div>
+                    <div class="level-card senior">
+                        <div class="level-emoji">👑</div>
+                        <h4>高级训机师</h4>
+                        <p>通过手机号/身份证匹配</p>
+                    </div>
+                </div>
+            </div>
+            <div class="info-section">
+                <h3>📁 项目文件</h3>
+                <p>微信小程序完整代码已生成在：<code>kxjl-points-mall/</code></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!-- mall.wxml -->
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrapper">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" placeholder="搜索商品..." value="{{keyword}}" bindinput="onSearchInput" confirm-type="search" bindconfirm="onSearch" />
+      <text class="search-clear" wx:if="{{keyword}}" bindtap="clearSearch">×</text>
+    </view>
+  </view>
+  <!-- 分类导航 -->
+  <scroll-view class="category-scroll" scroll-x show-scrollbar="{{false}}">
+    <view class="category-list">
+      <view class="category-item {{currentCategory === '' ? 'active' : ''}}" bindtap="selectCategory" data-category="">
+        <text class="category-icon placeholder">📦</text>
+        <text class="category-text">全部</text>
+      </view>
+      <view class="category-item {{currentCategory === item.name ? 'active' : ''}}" wx:for="{{categories}}" wx:key="_id" bindtap="selectCategory" data-category="{{item.name}}">
+        <text class="category-icon">{{item.icon || '📦'}}</text>
+        <text class="category-text">{{item.name}}</text>
+      </view>
+    </view>
+  </scroll-view>
+  <!-- 用户积分提示 -->
+  <view class="points-tip">
+    <text class="points-tip-text">当前积分：</text>
+    <text class="points-tip-value">{{formattedPoints}}</text>
+  </view>
+  <!-- 商品列表 -->
+  <view class="goods-container">
+    <view class="goods-grid">
+      <view class="goods-card" wx:for="{{goodsList}}" wx:key="_id" bindtap="goToDetail" data-id="{{item._id}}">
+        <image class="goods-image" src="{{item.images[0] || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+        <view class="goods-tag" wx:if="{{item.originalPoints && item.originalPoints > item.points}}">
+          兑换
+        </view>
+        <view class="goods-info">
+          <text class="goods-name">{{item.name}}</text>
+          <view class="goods-bottom">
+            <view class="goods-price">
+              <text class="points">{{item.points}}</text>
+              <text class="points-unit">积分</text>
+              <text class="original-points" wx:if="{{item.originalPoints && item.originalPoints > item.points}}">
+                {{item.originalPoints}}
+              </text>
+            </view>
+            <view class="goods-stock">
+              <text wx:if="{{item.stock > 0}}">库存 {{item.stock}}</text>
+              <text class="out-of-stock" wx:else>已兑完</text>
+            </view>
+          </view>
+        </view>
+        <view class="exchange-btn" wx:if="{{item.stock > 0}}" catchtap="onQuickExchange" data-id="{{item._id}}">
+          立即兑换
+        </view>
+      </view>
+    </view>
+    <!-- 空状态 -->
+    <view class="empty-container" wx:if="{{goodsList.length === 0 && !loading}}">
+      <view class="empty-icon">🛒</view>
+      <text class="empty-text">{{keyword ? '未找到相关商品' : '暂无商品'}}</text>
+    </view>
+    <!-- 加载状态 -->
+    <view class="loading-container" wx:if="{{loading}}">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">加载中...</text>
+    </view>
+    <!-- 没有更多 -->
+    <view class="no-more" wx:if="{{!hasMore && goodsList.length > 0}}">没有更多商品了</view>
+  </view>
+  <!-- 底部留白 -->
+  <view class="bottom-space"></view>
+</view>

@@ -1,0 +1,218 @@
+<!-- profile.wxml -->
+<view class="container">
+  <!-- 用户信息头部 -->
+  <view class="header">
+    <view class="user-info">
+      <image class="avatar" src="{{userInfo.avatar || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+      <view class="user-detail">
+        <view class="user-name-row">
+          <text class="user-name">{{userInfo.name || '未设置姓名'}}</text>
+          <view class="level-badge level-{{topCertLevelKey || userInfo.level || 'junior'}}" wx:if="{{topCertName}}">
+            <text class="level-text">{{topCertName}}</text>
+          </view>
+          <view class="level-badge level-{{userInfo.level || 'junior'}}" wx:else>
+            <text class="level-text">{{getLevelName(userInfo.level)}}</text>
+          </view>
+        </view>
+        <text class="user-phone">{{userInfo.phone ? maskPhone(userInfo.phone) : '未绑定手机号'}}</text>
+      </view>
+    </view>
+    <view class="points-card">
+      <view class="points-item">
+        <text class="points-value">{{formattedAvailablePoints}}</text>
+        <text class="points-label">可用积分</text>
+      </view>
+      <view class="points-divider"></view>
+      <view class="points-item">
+        <text class="points-value">{{formattedTotalPoints}}</text>
+        <text class="points-label">累计积分</text>
+      </view>
+    </view>
+  </view>
+  <!-- 等级说明 -->
+  <view class="card">
+    <view class="level-display-section">
+      <view class="level-display-header">
+        <text class="level-title">我的等级</text>
+        <text class="level-next" bindtap="showLevelGuide">查看详情 ></text>
+      </view>
+      <view class="level-display">
+        <view class="level-badge-large level-{{userInfo.level || 'junior'}}">
+          <text class="level-emoji">
+            {{(userInfo.level === 'senior' ? '👑' : userInfo.level === 'intermediate' ? '⭐' : '🌱')}}
+          </text>
+          <text class="level-name-large">{{getLevelName(userInfo.level)}}</text>
+        </view>
+        <view class="level-tip-text">等级通过手机号或身份证号码从系统数据库匹配</view>
+      </view>
+    </view>
+  </view>
+  <!-- 功能菜单 -->
+  <view class="card">
+    <view class="menu-list">
+      <view class="menu-item" bindtap="dailyCheckIn">
+        <view class="menu-left">
+          <text class="menu-icon">✅</text>
+          <text class="menu-text">每日签到</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+      <view class="menu-item" bindtap="goToPointsDetail">
+        <view class="menu-left">
+          <text class="menu-icon">📊</text>
+          <text class="menu-text">积分明细</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+      <view class="menu-item" bindtap="goToExchangeRecords">
+        <view class="menu-left">
+          <text class="menu-icon">📦</text>
+          <text class="menu-text">兑换记录</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+      <view class="menu-item" bindtap="goToAddress">
+        <view class="menu-left">
+          <text class="menu-icon">📍</text>
+          <text class="menu-text">收货地址</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+      <view class="menu-item" bindtap="goToMyCertificates">
+        <view class="menu-left">
+          <text class="menu-icon">📜</text>
+          <text class="menu-text">我的证书</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+    </view>
+  </view>
+  <!-- 详细信息 -->
+  <view class="card">
+    <view class="menu-list">
+      <view class="menu-item" bindtap="goToProfileEdit">
+        <view class="menu-left">
+          <text class="menu-icon">✏️</text>
+          <text class="menu-text">编辑个人资料</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+    </view>
+  </view>
+  <!-- 更多菜单 -->
+  <view class="card">
+    <view class="menu-list">
+      <view class="menu-item" bindtap="generatePromoCode">
+        <view class="menu-left">
+          <text class="menu-icon">🎫</text>
+          <text class="menu-text">我的推广码</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+      <view class="menu-item" bindtap="goToUpgradePreview">
+        <view class="menu-left">
+          <text class="menu-icon">🔒</text>
+          <text class="menu-text">升级权限预览</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+      <view class="menu-item" bindtap="generatePoster">
+        <view class="menu-left">
+          <text class="menu-icon">📱</text>
+          <text class="menu-text">分享生成海报</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+      <view class="menu-item" bindtap="contactService">
+        <view class="menu-left">
+          <text class="menu-icon">💬</text>
+          <text class="menu-text">联系客服</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+      <view class="menu-item" bindtap="showAbout">
+        <view class="menu-left">
+          <text class="menu-icon">ℹ️</text>
+          <text class="menu-text">关于我们</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+    </view>
+  </view>
+  <!-- 管理员入口 -->
+  <view class="card" wx:if="{{isAdmin}}">
+    <view class="menu-list">
+      <view class="menu-item admin-menu" bindtap="goToAdmin">
+        <view class="menu-left">
+          <text class="menu-icon">🔧</text>
+          <text class="menu-text">管理后台</text>
+        </view>
+        <text class="menu-arrow">></text>
+      </view>
+    </view>
+  </view>
+  <!-- 底部留白 -->
+  <view class="bottom-space"></view>
+  
+         <!-- 用于生成海报的隐藏 canvas -->
+  <canvas canvas-id="posterCanvas" style="width: 400px; height: 533px; position: absolute; left: -9999px; top: -9999px;"></canvas>
+  
+  <!-- 海报弹窗 -->
+  <view class="modal-mask" wx:if="{{showPosterModal}}" bindtap="hidePosterModal">
+    <view class="modal-content poster-modal" catchtap="stopPropagation">
+      <view class="modal-header">
+        <text class="modal-title">分享海报</text>
+        <text class="modal-close" bindtap="hidePosterModal">×</text>
+      </view>
+      <view class="modal-body">
+        <!-- 海报预览 -->
+        <view class="poster-preview">
+          <image src="{{posterImage}}" mode="aspectFit"></image>
+        </view>
+        <!-- 操作按钮 -->
+        <view class="poster-actions">
+          <button class="action-btn save-btn" bindtap="savePoster">保存图片</button>
+          <button class="action-btn share-btn" bindtap="shareToMoments">分享到朋友圈</button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 等级说明弹窗 -->
+  <view class="modal-mask" wx:if="{{showLevelModal}}" bindtap="hideLevelGuide">
+    <view class="modal-content level-modal" catchtap="stopPropagation">
+      <view class="modal-header">
+        <text class="modal-title">等级说明</text>
+        <text class="modal-close" bindtap="hideLevelGuide">×</text>
+      </view>
+      <view class="modal-body">
+        <view class="level-item" wx:for="{{levels}}" wx:key="key">
+          <view class="level-icon-wrapper level-{{item.key}}">
+            <text class="level-emoji">
+              {{item.key === 'senior' ? '👑' : item.key === 'intermediate' ? '⭐' : '🌱'}}
+            </text>
+          </view>
+          <view class="level-detail">
+            <text class="level-name">{{item.name}}</text>
+            <text class="level-require">通过系统匹配</text>
+          </view>
+        </view>
+        <view class="divider"></view>
+        <view class="privileges">
+          <text class="privileges-title">等级说明</text>
+          <view class="privilege-item">
+            <text class="privilege-dot"></text>
+            <text class="privilege-text">等级通过手机号码或身份证号码从系统数据库匹配</text>
+          </view>
+          <view class="privilege-item">
+            <text class="privilege-dot"></text>
+            <text class="privilege-text">等级独立于积分数量，积分仅用于商品兑换</text>
+          </view>
+          <view class="privilege-item">
+            <text class="privilege-dot"></text>
+            <text class="privilege-text">不同等级可享受不同的专属权益</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

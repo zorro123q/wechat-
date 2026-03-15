@@ -1,0 +1,466 @@
+/* profile.wxss */
+.container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 40rpx;
+}
+
+/* 用户信息头部 */
+.header {
+  background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+  padding: 40rpx 30rpx 30rpx;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 4rpx solid rgba(255, 255, 255, 0.3);
+}
+
+.user-detail {
+  flex: 1;
+  margin-left: 24rpx;
+}
+
+.user-name-row {
+  display: flex;
+  align-items: center;
+}
+
+.user-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.level-badge {
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  margin-left: 16rpx;
+}
+
+.level-badge.level-junior {
+  background: rgba(82, 196, 26, 0.3);
+}
+
+.level-badge.level-intermediate {
+  background: rgba(250, 173, 20, 0.3);
+}
+
+.level-badge.level-senior {
+  background: rgba(245, 34, 45, 0.3);
+}
+
+.level-text {
+  font-size: 20rpx;
+  color: #ffffff;
+}
+
+.user-phone {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 8rpx;
+  display: block;
+}
+
+.points-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-top: 30rpx;
+  gap: 20rpx;
+}
+
+.points-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.points-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.points-value {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.points-label {
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 8rpx;
+}
+
+.points-divider {
+  width: 1rpx;
+  height: 60rpx;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.checkin-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: 1rpx solid rgba(255, 255, 255, 0.3);
+  border-radius: 8rpx;
+  padding: 16rpx 32rpx;
+  font-size: 28rpx;
+  margin-top: 10rpx;
+}
+
+.checkin-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.checkin-btn.checked-in {
+  background-color: rgba(102, 126, 234, 0.8);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.checkin-btn[disabled] {
+  opacity: 0.8;
+}
+
+/* 卡片 */
+.card {
+  background: #ffffff;
+  border-radius: 16rpx;
+  margin: 20rpx 30rpx 0;
+  overflow: hidden;
+}
+
+/* 等级进度 */
+.level-progress-section {
+  padding: 30rpx;
+}
+
+.level-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.level-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.level-next {
+  font-size: 24rpx;
+  color: #1890ff;
+}
+
+.level-progress-bar {
+  display: flex;
+  align-items: center;
+}
+
+.level-badge-small {
+  padding: 8rpx 20rpx;
+  border-radius: 24rpx;
+  font-size: 22rpx;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.level-badge-small.level-junior {
+  background: linear-gradient(135deg, #52c41a 0%, #389e0d 100%);
+}
+
+.level-badge-small.level-intermediate {
+  background: linear-gradient(135deg, #faad14 0%, #d48806 100%);
+}
+
+.level-badge-small.level-senior {
+  background: linear-gradient(135deg, #f5222d 0%, #cf1322 100%);
+}
+
+.progress-container {
+  flex: 1;
+  margin: 0 20rpx;
+}
+
+.progress-bar {
+  height: 12rpx;
+  background: #f0f0f0;
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1890ff 0%, #096dd9 100%);
+  border-radius: 6rpx;
+  transition: width 0.3s ease;
+}
+
+.level-tip {
+  font-size: 24rpx;
+  color: #666666;
+  text-align: center;
+  margin-top: 20rpx;
+}
+
+.text-primary {
+  color: #1890ff;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+/* 菜单列表 */
+.menu-list {
+  padding: 0 30rpx;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item.admin-menu {
+  color: #ff4d4f;
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  font-size: 36rpx;
+  margin-right: 20rpx;
+}
+
+.menu-text {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.menu-arrow {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+/* 底部留白 */
+.bottom-space {
+  height: 40rpx;
+}
+
+/* 弹窗 */
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  width: 600rpx;
+  max-height: 80vh;
+  background: #ffffff;
+  border-radius: 24rpx;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.modal-close {
+  font-size: 48rpx;
+  color: #999999;
+  line-height: 1;
+}
+
+.modal-body {
+  padding: 30rpx;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.level-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.level-icon-wrapper {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.level-icon-wrapper .level-emoji {
+  font-size: 40rpx;
+  color: #ffffff;
+  line-height: 1;
+  position: relative;
+  bottom: 25rpx;
+}
+
+.level-detail {
+  flex: 1;
+  margin-left: 20rpx;
+}
+
+.level-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.level-require {
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 6rpx;
+}
+
+.divider {
+  height: 1rpx;
+  background: #f0f0f0;
+  margin: 30rpx 0;
+}
+
+.privileges-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.privilege-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 12rpx 0;
+}
+
+.privilege-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #1890ff;
+  margin-top: 10rpx;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.privilege-text {
+  font-size: 26rpx;
+  color: #666666;
+  line-height: 1.6;
+}
+
+/* 等级展示 */
+.level-display-section {
+  padding: 30rpx;
+}
+
+.level-display-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.level-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.level-badge-large {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+.level-badge-large .level-emoji {
+  font-size: 100rpx;
+  line-height: 1;
+  position: relative;
+  bottom: 50rpx;
+}
+
+.level-badge-large .level-name-large {
+  display: none;
+}
+
+.level-badge-large.level-junior {
+  background: linear-gradient(135deg, #52c41a 0%, #389e0d 100%);
+}
+
+.level-badge-large.level-intermediate {
+  background: linear-gradient(135deg, #faad14 0%, #d48806 100%);
+}
+
+.level-badge-large.level-senior {
+  background: linear-gradient(135deg, #f5222d 0%, #cf1322 100%);
+}
+
+.level-badge-large.level-undefined {
+  background: linear-gradient(135deg, #52c41a 0%, #389e0d 100%);
+}
+
+
+.level-tip-text {
+  font-size: 24rpx;
+  color: #999999;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.menu-item.disabled {
+  color: #ccc;
+  pointer-events: none;
+  /* 禁止点击事件 */
+}

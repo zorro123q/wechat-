@@ -1,0 +1,46 @@
+<view class="container">
+  <view class="card">
+    <view class="form-item">
+      <text class="form-label">学校</text>
+      <input class="form-input" placeholder="未填写" value="{{form.school}}" data-field="school" bindinput="onInput" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">学位</text>
+      <input class="form-input" placeholder="未填写" value="{{form.degree}}" data-field="degree" bindinput="onInput" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">手机号</text>
+      <input class="form-input" type="number" maxlength="11" placeholder="未填写" value="{{form.phone}}" data-field="phone" bindinput="onInput" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">公司</text>
+      <input class="form-input" placeholder="未填写" value="{{form.company}}" data-field="company" bindinput="onInput" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">职位</text>
+      <input class="form-input" placeholder="未填写" value="{{form.role}}" data-field="role" bindinput="onInput" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">工作经验</text>
+      <input class="form-input" placeholder="例如：3年" value="{{form.experience}}" data-field="experience" bindinput="onInput" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">培训意向</text>
+      <textarea class="form-textarea" placeholder="未填写" value="{{form.trainingIntention}}" data-field="trainingIntention" bindinput="onInput" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">身份证号</text>
+      <input class="form-input" placeholder="未填写" value="{{form.idCard}}" data-field="idCard" bindinput="onInput" />
+    </view>
+    <view class="form-item">
+      <text class="form-label">推荐码</text>
+      <view class="referral-right">
+        <text class="referral-code">{{form.referralCode || '--'}}</text>
+        <text class="copy-btn" bindtap="copyReferralCode">复制</text>
+      </view>
+    </view>
+  </view>
+  <view class="bottom-bar">
+    <button class="save-btn" loading="{{saving}}" disabled="{{saving}}" bindtap="onSave">保存</button>
+  </view>
+</view>
