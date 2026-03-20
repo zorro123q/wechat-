@@ -1,0 +1,39 @@
+<view class="container">
+  <view class="header">
+    <text class="header-title">上传证书</text>
+    <text class="header-count">共 {{uploads.length}} 张</text>
+  </view>
+  <view class="card">
+    <view class="upload-row">
+      <view class="upload-left">
+        <text class="upload-title">证书图片</text>
+        <text class="upload-desc">支持拍照/相册上传，最多 1 张</text>
+      </view>
+      <button class="upload-btn" bindtap="chooseAndUpload" loading="{{uploading}}" disabled="{{uploading}}">
+        {{uploading ? '上传中...' : '上传'}}
+      </button>
+    </view>
+  </view>
+  <view class="list-card" wx:if="{{uploads.length > 0}}">
+    <view class="upload-item" wx:for="{{uploads}}" wx:key="_id">
+      <image class="thumb" src="{{item.imageUrl}}" mode="aspectFill" data-url="{{item.imageUrl}}" bindtap="previewImage"></image>
+      <view class="info">
+        <text class="name">证书图片</text>
+        <text class="date">已上传：{{item.formattedDate}}</text>
+      </view>
+      <view class="actions">
+        <button class="delete-btn" size="mini" data-id="{{item._id}}" bindtap="deleteUpload">
+          删除
+        </button>
+      </view>
+    </view>
+  </view>
+  <view class="empty" wx:if="{{uploads.length === 0 && !loading}}">
+    <text class="empty-icon">📷</text>
+    <text class="empty-text">暂无上传记录</text>
+  </view>
+  <view class="loading" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

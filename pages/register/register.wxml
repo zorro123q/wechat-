@@ -1,0 +1,97 @@
+<view class="page">
+  <view class="hero">
+    <text class="hero-title">学员注册</text>
+    <text class="hero-subtitle">完善信息后即可完成登记</text>
+  </view>
+  <form bindsubmit="submitForm" class="register-form">
+    <view class="card">
+      <view class="form-item">
+        <text class="label required">姓名</text>
+        <view class="control">
+          <input class="input" data-name="name" placeholder="请输入姓名" value="{{formData.name}}" bindinput="handleInput" />
+        </view>
+      </view>
+      <view class="form-item">
+        <text class="label required">手机号</text>
+        <view class="control">
+          <input class="input" data-name="phone" placeholder="请输入手机号" value="{{formData.phone}}" bindinput="handleInput" type="number" disabled="{{force}}" />
+        </view>
+        <text wx:if="{{force}}" class="disabled-tip">为避免冲突，已锁定当前登录手机号</text>
+      </view>
+      <view class="form-item">
+        <text class="label required">学校</text>
+        <view class="control">
+          <input class="input" data-name="school" placeholder="请输入学校" value="{{formData.school}}" bindinput="handleInput" />
+        </view>
+      </view>
+      <view class="form-item">
+        <text class="label required">学历</text>
+        <picker class="picker" range="{{educationOptions}}" data-name="education" value="{{formData.education}}" bindchange="handlePickerChange">
+          <view class="control picker-control">
+            <text class="picker-text">{{educationOptions[formData.education] || '请选择学历'}}</text>
+            <text class="picker-arrow">›</text>
+          </view>
+        </picker>
+      </view>
+      <view class="form-item">
+        <text class="label required">公司</text>
+        <view class="control">
+          <input class="input" data-name="company" placeholder="请输入公司" value="{{formData.company}}" bindinput="handleInput" />
+        </view>
+      </view>
+      <view class="form-item">
+        <text class="label required">岗位</text>
+        <view class="control">
+          <input class="input" data-name="position" placeholder="请输入岗位" value="{{formData.position}}" bindinput="handleInput" />
+        </view>
+      </view>
+      <view class="form-item">
+        <text class="label required">工作年限</text>
+        <view class="control">
+          <input class="input" data-name="workYears" placeholder="请输入工作年限" value="{{formData.workYears}}" bindinput="handleInput" type="number" />
+        </view>
+      </view>
+      <view class="form-item">
+        <text class="label required">是否参训</text>
+        <picker class="picker" range="{{trainingOptions}}" data-name="isTrained" value="{{formData.isTrained}}" bindchange="handlePickerChange">
+          <view class="control picker-control">
+            <text class="picker-text">{{trainingOptions[formData.isTrained] || '请选择是否参训'}}</text>
+            <text class="picker-arrow">›</text>
+          </view>
+        </picker>
+      </view>
+      <view class="form-item">
+        <text class="label">身份证</text>
+        <view class="control">
+          <input class="input" data-name="idCard" placeholder="请输入身份证号（选填）" value="{{formData.idCard}}" bindinput="handleInput" />
+        </view>
+      </view>
+      <view class="form-item">
+        <text class="label">推荐码</text>
+        <view class="control">
+          <input class="input" data-name="recommendCode" placeholder="请输入推荐码（选填）" value="{{formData.recommendCode}}" bindinput="handleInput" disabled="{{isRecommendCodeDisabled}}" />
+        </view>
+        <text wx:if="{{isRecommendCodeDisabled}}" class="disabled-tip">推荐码已锁定</text>
+      </view>
+    </view>
+    <view class="card" wx:if="{{requirePassword}}">
+      <view class="form-item">
+        <text class="label required">设置密码</text>
+        <view class="control">
+          <input class="input" placeholder="请设置 6 位以上密码" password value="{{password}}" bindinput="onPasswordInput" />
+        </view>
+      </view>
+      <view class="form-item">
+        <text class="label required">确认密码</text>
+        <view class="control">
+          <input class="input" placeholder="请再次输入密码" password value="{{passwordConfirm}}" bindinput="onPasswordConfirmInput" />
+        </view>
+      </view>
+    </view>
+    <view class="bottom-bar">
+      <button class="submit-btn" formType="submit" loading="{{isSubmitting}}" disabled="{{isSubmitting}}">
+        {{isSubmitting ? '提交中...' : (requirePassword ? '提交并设置密码' : '提交注册')}}
+      </button>
+    </view>
+  </form>
+</view>

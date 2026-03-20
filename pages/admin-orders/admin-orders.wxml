@@ -1,0 +1,121 @@
+<view class="container">
+  <view class="toolbar">
+    <view class="search">
+      <input class="search-input" placeholder="搜索姓名/手机号/订单号/兑换码/商品名" value="{{keyword}}" bindinput="onKeywordInput" confirm-type="search" bindconfirm="reload" />
+      <button class="search-btn" size="mini" bindtap="reload">搜索</button>
+    </view>
+    <view class="filters">
+      <picker mode="selector" range="{{statusOptions}}" value="{{statusIndex}}" bindchange="onStatusChange">
+        <view class="filter">{{statusOptions[statusIndex]}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class="list" wx:if="{{list.length > 0}}">
+    <view class="row" wx:for="{{list}}" wx:key="_id" bindtap="openDetail" data-item="{{item}}">
+      <image class="thumb" src="{{item.goodsImageUrl || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+      <view class="main">
+        <view class="line1">
+          <text class="goods">{{item.goodsName || '--'}}</text>
+        </view>
+        <view class="line2">
+          <text class="user">{{item.userName || '--'}} {{item.userPhone || ''}}</text>
+          <view class="right-col">
+            <text class="status status-{{item.statusKey}}">状态：{{item.statusText || '待发货'}}</text>
+            <text class="points">{{item.points}}积分</text>
+          </view>
+        </view>
+        <view class="line3">
+          <text class="meta">订单号：{{item.orderNo}}</text>
+        </view>
+        <view class="line4">
+          <text class="meta">兑换码：{{item.exchangeCode}}</text>
+          <text class="meta">{{item.formattedTime}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="empty" wx:if="{{list.length === 0 && !loading}}">
+    <text>暂无订单</text>
+  </view>
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+  <view class="more" wx:if="{{hasMore && !loading}}">
+    <button class="more-btn" size="mini" bindtap="loadMore">加载更多</button>
+  </view>
+  <view class="modal-mask" wx:if="{{showDetail}}" bindtap="closeDetail">
+    <view class="modal" catchtap="stop">
+      <view class="modal-title">订单详情</view>
+      <view class="detail">
+        <view class="detail-row">
+          <text class="k">商品</text>
+          <text class="v">{{detail.goodsName}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="k">积分</text>
+          <text class="v">{{detail.points}} 积分</text>
+        </view>
+        <view class="detail-row">
+          <text class="k">状态</text>
+          <text class="v">{{detail.statusText || '待发货'}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="k">学员</text>
+          <text class="v">{{detail.userName}} {{detail.userPhone}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="k">订单号</text>
+          <view class="v-right">
+            <text class="v">{{detail.orderNo}}</text>
+            <text class="copy" data-text="{{detail.orderNo}}" bindtap="copy">复制</text>
+          </view>
+        </view>
+        <view class="detail-row">
+          <text class="k">兑换码</text>
+          <view class="v-right">
+            <text class="v">{{detail.exchangeCode}}</text>
+            <text class="copy" data-text="{{detail.exchangeCode}}" bindtap="copy">复制</text>
+          </view>
+        </view>
+        <view class="detail-row">
+          <text class="k">时间</text>
+          <text class="v">{{detail.formattedTime}}</text>
+        </view>
+        <view class="detail-row" wx:if="{{detail.remark}}">
+          <text class="k">备注</text>
+          <text class="v">{{detail.remark}}</text>
+        </view>
+        <view class="detail-card" wx:if="{{detail.address}}">
+          <view class="detail-card-title">收货地址</view>
+          <view class="detail-card-line">{{detail.address.name}} {{detail.address.phone}}</view>
+          <view class="detail-card-line">
+            {{detail.address.province}}{{detail.address.city}}{{detail.address.district}}{{detail.address.detail}}
+          </view>
+        </view>
+        <view class="detail-card">
+          <view class="detail-card-title">物流信息</view>
+          <view class="detail-row">
+            <text class="k">快递公司</text>
+            <input class="input" placeholder="选填" value="{{editingExpressCompany}}" bindinput="onExpressCompanyInput" />
+          </view>
+          <view class="detail-row">
+            <text class="k">快递单号</text>
+            <input class="input" placeholder="发货必填" value="{{editingExpressNo}}" bindinput="onExpressNoInput" />
+          </view>
+        </view>
+      </view>
+      <view class="modal-actions">
+        <button class="btn danger" wx:if="{{detail.status !== 'completed' && detail.status !== 'cancelled'}}" bindtap="cancelOrder" disabled="{{operating}}">
+          取消订单
+        </button>
+        <button class="btn primary" wx:if="{{detail.status === 'pending'}}" bindtap="markShipped" disabled="{{operating}}">
+          标记发货
+        </button>
+        <button class="btn primary" wx:if="{{detail.status === 'shipped'}}" bindtap="markCompleted" disabled="{{operating}}">
+          标记完成
+        </button>
+        <button class="btn" bindtap="closeDetail">关闭</button>
+      </view>
+    </view>
+  </view>
+</view>

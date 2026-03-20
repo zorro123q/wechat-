@@ -1,0 +1,11 @@
+<view class="container">
+  <view class="card">
+    <image class="code-img" src="{{imgSrc}}" mode="widthFix" show-menu-by-longpress="{{true}}" binderror="onImgError" wx:if="{{imgSrc}}"></image>
+    <view class="placeholder" wx:if="{{loading}}">加载中...</view>
+    <view class="placeholder" wx:if="{{!loading && !imgSrc}}">{{errorMsg || '暂无图片'}}</view>
+  </view>
+
+  <view class="actions">
+    <button class="btn" bindtap="saveToAlbum" disabled="{{!imgSrc || saving}}" loading="{{saving}}">保存到相册</button>
+  </view>
+</view>

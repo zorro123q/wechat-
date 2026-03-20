@@ -1,0 +1,94 @@
+<!--address.wxml-->
+<view class="container">
+  <!-- 地址列表 -->
+  <view class="list-container">
+    <view class="address-item" wx:for="{{addressList}}" wx:key="_id">
+      <view class="address-info" bindtap="selectAddress" wx:if="{{isSelectMode}}" data-address="{{item}}">
+        <view class="address-top">
+          <text class="address-name">{{item.name}}</text>
+          <text class="address-phone">{{item.phone}}</text>
+          <view class="default-tag" wx:if="{{item.isDefault}}">默认</view>
+        </view>
+        <text class="address-detail">{{item.province}}{{item.city}}{{item.district}}{{item.detail}}</text>
+      </view>
+      <view class="address-info" wx:else>
+        <view class="address-top">
+          <text class="address-name">{{item.name}}</text>
+          <text class="address-phone">{{item.phone}}</text>
+          <view class="default-tag" wx:if="{{item.isDefault}}">默认</view>
+        </view>
+        <text class="address-detail">{{item.province}}{{item.city}}{{item.district}}{{item.detail}}</text>
+        <view class="address-actions">
+          <view class="action-item" bindtap="setDefault" wx:if="{{!item.isDefault}}" data-id="{{item._id}}">
+            <text class="action-icon">✓</text>
+            <text class="action-text">设为默认</text>
+          </view>
+          <view class="action-item" bindtap="editAddress" data-id="{{item._id}}" data-address="{{item}}">
+            <text class="action-icon">✏️</text>
+            <text class="action-text">编辑</text>
+          </view>
+          <view class="action-item delete" bindtap="deleteAddress" data-id="{{item._id}}">
+            <text class="action-icon">🗑️</text>
+            <text class="action-text">删除</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-container" wx:if="{{addressList.length === 0 && !loading}}">
+      <text class="empty-icon">📍</text>
+      <text class="empty-text">暂无收货地址</text>
+    </view>
+  </view>
+
+  <!-- 底部添加按钮 -->
+  <view class="bottom-bar" wx:if="{{!isSelectMode}}">
+    <button class="add-btn" bindtap="addAddress">
+      <text class="add-icon">+</text>
+      添加地址
+    </button>
+  </view>
+
+  <!-- 编辑弹窗 -->
+  <view class="modal-mask" wx:if="{{showEditModal}}" bindtap="hideEditModal">
+    <view class="modal-content edit-modal" catchtap="stopPropagation">
+      <view class="modal-header">
+        <text class="modal-title">{{editingId ? '编辑地址' : '添加地址'}}</text>
+        <text class="modal-close" bindtap="hideEditModal">×</text>
+      </view>
+      <view class="modal-body">
+        <view class="form-item">
+          <text class="form-label">收货人</text>
+          <input class="form-input" placeholder="请输入收货人姓名" value="{{editForm.name}}" bindinput="onNameInput" />
+        </view>
+        <view class="form-item">
+          <text class="form-label">手机号</text>
+          <input class="form-input" type="number" placeholder="请输入手机号" value="{{editForm.phone}}" bindinput="onPhoneInput" maxlength="11" />
+        </view>
+        <view class="form-item">
+          <text class="form-label">所在地区</text>
+          <picker mode="region" value="{{region}}" bindchange="onRegionChange">
+            <view class="picker-text">
+              {{editForm.province && editForm.city && editForm.district ? editForm.province + editForm.city + editForm.district : '请选择省/市/区'}}
+            </view>
+          </picker>
+        </view>
+        <view class="form-item">
+          <text class="form-label">详细地址</text>
+          <textarea class="form-textarea" placeholder="请输入详细地址" value="{{editForm.detail}}" bindinput="onDetailInput" />
+        </view>
+        <view class="form-item">
+          <view class="default-switch">
+            <text class="form-label">设为默认地址</text>
+            <switch checked="{{editForm.isDefault}}" bindchange="onDefaultSwitch" color="#1890ff" />
+          </view>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <button class="modal-btn modal-btn-cancel" bindtap="hideEditModal">取消</button>
+        <button class="modal-btn modal-btn-confirm" bindtap="saveAddress">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

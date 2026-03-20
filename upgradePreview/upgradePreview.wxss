@@ -1,0 +1,110 @@
+/* upgradePreview.wxss */
+.container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 30rpx;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.level-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.level-item {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.level-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.level-number {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-right: 16rpx;
+}
+
+.level-name {
+  font-size: 28rpx;
+  color: #666666;
+}
+
+.level-1 .level-number {
+  color: #52c41a;
+}
+
+.level-2 .level-number {
+  color: #faad14;
+}
+
+.level-3 .level-number {
+  color: #f5222d;
+}
+
+.level-privileges {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.privilege-item {
+  display: flex;
+  align-items: flex-start;
+}
+
+.privilege-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #1890ff;
+  margin-top: 10rpx;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.privilege-text {
+  font-size: 26rpx;
+  color: #666666;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.footer {
+  margin-top: 40rpx;
+  text-align: center;
+  padding: 20rpx;
+  background: #ffffff;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.footer-text {
+  font-size: 24rpx;
+  color: #999999;
+  line-height: 1.6;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.footer-text:last-child {
+  margin-bottom: 0;
+}

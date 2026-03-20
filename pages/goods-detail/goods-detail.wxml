@@ -1,0 +1,127 @@
+<!-- goods-detail.wxml -->
+<view class="container" wx:if="{{goods}}">
+  <!-- 商品图片轮播 -->
+  <swiper class="goods-swiper" indicator-dots indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ffffff">
+    <swiper-item wx:for="{{displayImages}}" wx:key="*this">
+      <image class="swiper-image" src="{{item}}" mode="aspectFill"></image>
+    </swiper-item>
+    <swiper-item wx:if="{{!displayImages || displayImages.length === 0}}">
+      <image class="swiper-image" src="/images/default-avatar.png" mode="aspectFill"></image>
+    </swiper-item>
+  </swiper>
+  <!-- 商品信息 -->
+  <view class="goods-info-section">
+    <view class="goods-name-row">
+      <text class="goods-name">{{goods.name}}</text>
+    </view>
+    <view class="goods-price-row">
+      <view class="price-left">
+        <text class="points-label">积分</text>
+        <text class="points-value">{{goods.points}}</text>
+        <text class="original-points" wx:if="{{goods.originalPoints && goods.originalPoints > goods.points}}">
+          {{goods.originalPoints}}积分
+        </text>
+      </view>
+      <view class="price-right">
+        <text class="sold-count">已兑 {{goods.sold || 0}}</text>
+      </view>
+    </view>
+    <view class="stock-info">
+      <text class="stock-text" wx:if="{{goods.stock > 0}}">库存：{{goods.stock}}件</text>
+      <text class="stock-text out-of-stock" wx:else>已兑完</text>
+    </view>
+  </view>
+  <!-- 分割线 -->
+  <view class="divider-section"></view>
+  <!-- 用户积分提示 -->
+  <view class="points-tip-section">
+    <view class="points-tip-content">
+      <text class="points-tip-text">我的积分：</text>
+      <text class="points-tip-value">{{formattedUserPoints}}</text>
+      <text class="points-tip-diff" wx:if="{{userInfo.points < goods.points}}">
+        还差 {{formattedPointsDifference}} 积分
+      </text>
+    </view>
+  </view>
+  <!-- 分割线 -->
+  <view class="divider-section"></view>
+  <!-- 商品详情 -->
+  <view class="detail-section">
+    <view class="section-title">商品详情</view>
+    <view class="detail-content">
+      <text class="detail-text">{{goods.description || '暂无详细描述'}}</text>
+    </view>
+  </view>
+  <!-- 底部留白 -->
+  <view class="bottom-space"></view>
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="bottom-left">
+      <view class="bar-item" bindtap="goToIndex">
+        <text class="bar-icon">🏠</text>
+        <text class="bar-text">首页</text>
+      </view>
+      <view class="bar-item" bindtap="goToMall">
+        <text class="bar-icon">🛒</text>
+        <text class="bar-text">商城</text>
+      </view>
+    </view>
+    <view class="bottom-right">
+      <button class="btn-exchange {{goods.stock <= 0 || userInfo.points < goods.points ? 'disabled' : ''}}" disabled="{{goods.stock <= 0 || userInfo.points < goods.points}}" bindtap="handleExchange">
+        {{goods.stock <= 0 ? '已兑完' : userInfo.points < goods.points ? '积分不足' : '立即兑换'}}
+      </button>
+    </view>
+  </view>
+  <!-- 兑换确认弹窗 -->
+  <view class="modal-mask" wx:if="{{showExchangeModal}}" bindtap="hideExchangeModal">
+    <view class="modal-content exchange-modal" catchtap="stopPropagation">
+      <view class="modal-header">
+        <text class="modal-title">确认兑换</text>
+      </view>
+      <view class="modal-body">
+        <view class="modal-goods-info">
+          <image class="modal-goods-image" src="{{displayCover || goods.images[0] || '/images/default-goods.png'}}" mode="aspectFill"></image>
+          <view class="modal-goods-detail">
+            <text class="modal-goods-name">{{goods.name}}</text>
+            <text class="modal-goods-points">{{goods.points}} 积分</text>
+          </view>
+        </view>
+        <view class="divider"></view>
+        <view class="address-section" wx:if="{{address}}">
+          <view class="address-row">
+            <text class="address-label">收货地址</text>
+          </view>
+          <view class="address-info" bindtap="selectAddress">
+            <text class="address-name">{{address.name}}</text>
+            <text class="address-phone">{{address.phone}}</text>
+            <text class="address-detail">
+              {{address.province}}{{address.city}}{{address.district}}{{address.detail}}
+            </text>
+          </view>
+        </view>
+        <view class="address-section" wx:else>
+          <view class="address-select" bindtap="selectAddress">
+            <text class="address-placeholder">请选择收货地址 ></text>
+          </view>
+        </view>
+        <view class="remark-section">
+          <text class="remark-label">备注（选填）</text>
+          <input class="remark-input" placeholder="请输入备注信息" value="{{remark}}" bindinput="onRemarkInput" />
+        </view>
+        <view class="points-warning">
+          <text class="warning-icon">⚠️</text>
+          <text class="warning-text">兑换后积分将扣除，不支持退款</text>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <button class="modal-btn modal-btn-cancel" bindtap="hideExchangeModal">取消</button>
+        <button class="modal-btn modal-btn-confirm" bindtap="confirmExchange">确认兑换</button>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 加载状态 -->
+<view class="loading-page" wx:if="{{loading}}">
+  <view class="loading-spinner"></view>
+  <text class="loading-text">加载中...</text>
+</view>

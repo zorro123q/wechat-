@@ -1,0 +1,60 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/mall/mall",
+    "pages/goods-detail/goods-detail",
+    "pages/points-detail/points-detail",
+    "pages/exchange-records/exchange-records",
+    "pages/profile/profile",
+    "pages/address/address",
+    "pages/admin/admin",
+    "upgradePreview/upgradePreview",
+    "pages/register/register",
+    "pages/profile-edit/profile-edit",
+    "pages/admin-user-list/admin-user-list",
+    "pages/promo-code/promo-code",
+    "pages/my-certificates/my-certificates",
+    "pages/upload-certificate/upload-certificate",
+    "pages/admin-goods/admin-goods",
+    "pages/admin-categories/admin-categories",
+    "pages/admin-points-logs/admin-points-logs",
+    "pages/admin-orders/admin-orders"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1890ff",
+    "navigationBarTitleText": "科讯嘉联训机师学苑",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f5f5f5"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#1890ff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-active.png"
+      },
+      {
+        "pagePath": "pages/mall/mall",
+        "text": "积分商城",
+        "iconPath": "images/mall.png",
+        "selectedIconPath": "images/mall-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/profile.png",
+        "selectedIconPath": "images/profile-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

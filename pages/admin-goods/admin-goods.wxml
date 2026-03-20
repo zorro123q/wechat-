@@ -1,0 +1,90 @@
+<view class="container">
+  <view class="toolbar">
+    <view class="search">
+      <input class="search-input" placeholder="搜索商品名称" value="{{keyword}}" bindinput="onKeywordInput" />
+      <button class="search-btn" size="mini" bindtap="reload">搜索</button>
+    </view>
+    <view class="filters">
+      <picker mode="selector" range="{{statusOptions}}" value="{{statusIndex}}" bindchange="onStatusChange">
+        <view class="filter">{{statusOptions[statusIndex]}}</view>
+      </picker>
+      <picker mode="selector" range="{{categoryOptions}}" value="{{categoryIndex}}" bindchange="onCategoryChange">
+        <view class="filter">{{categoryOptions[categoryIndex]}}</view>
+      </picker>
+      <button class="add-btn" size="mini" bindtap="openCreate">新增</button>
+    </view>
+  </view>
+
+  <view class="list" wx:if="{{list.length > 0}}">
+    <view class="row" wx:for="{{list}}" wx:key="_id">
+      <view class="row-main">
+        <text class="name">{{item.name}}</text>
+        <view class="meta">
+          <text class="tag {{item.status === 'on' ? 'on' : 'off'}}">{{item.status === 'on' ? '上架' : '下架'}}</text>
+          <text class="meta-text">积分：{{item.points || 0}}</text>
+          <text class="meta-text">库存：{{item.stock || 0}}</text>
+        </view>
+      </view>
+      <view class="row-actions">
+        <button class="btn" size="mini" data-item="{{item}}" bindtap="openEdit">编辑</button>
+        <button class="btn danger" size="mini" data-id="{{item._id}}" bindtap="remove">删除</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{list.length === 0 && !loading}}">
+    <text>暂无数据</text>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <view class="more" wx:if="{{hasMore && !loading}}">
+    <button class="more-btn" size="mini" bindtap="loadMore">加载更多</button>
+  </view>
+
+  <view class="modal-mask" wx:if="{{showEditor}}" bindtap="closeEditor">
+    <view class="modal" catchtap="stop">
+      <view class="modal-title">{{editingId ? '编辑商品' : '新增商品'}}</view>
+      <view class="form">
+        <view class="form-row">
+          <text class="label">名称</text>
+          <input class="input" placeholder="请输入商品名称" value="{{form.name}}" bindinput="onFormInput" data-field="name" />
+        </view>
+        <view class="form-row">
+          <text class="label">积分</text>
+          <input class="input" placeholder="0" type="number" value="{{form.points}}" bindinput="onFormInput" data-field="points" />
+        </view>
+        <view class="form-row">
+          <text class="label">库存</text>
+          <input class="input" placeholder="0" type="number" value="{{form.stock}}" bindinput="onFormInput" data-field="stock" />
+        </view>
+        <view class="form-row">
+          <text class="label">排序</text>
+          <input class="input" placeholder="0" type="number" value="{{form.sort}}" bindinput="onFormInput" data-field="sort" />
+        </view>
+        <view class="form-row">
+          <text class="label">分类</text>
+          <picker mode="selector" range="{{categoryOptions}}" value="{{formCategoryIndex}}" bindchange="onFormCategoryChange">
+            <view class="input">{{categoryOptions[formCategoryIndex]}}</view>
+          </picker>
+        </view>
+        <view class="form-row">
+          <text class="label">状态</text>
+          <picker mode="selector" range="{{statusEditOptions}}" value="{{formStatusIndex}}" bindchange="onFormStatusChange">
+            <view class="input">{{statusEditOptions[formStatusIndex]}}</view>
+          </picker>
+        </view>
+        <view class="form-row">
+          <text class="label">图片URL</text>
+          <input class="input" placeholder="https://..." value="{{form.imageUrl}}" bindinput="onFormInput" data-field="imageUrl" />
+        </view>
+      </view>
+      <view class="modal-actions">
+        <button class="btn" bindtap="closeEditor">取消</button>
+        <button class="btn primary" bindtap="save">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

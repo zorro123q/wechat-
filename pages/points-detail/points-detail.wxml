@@ -1,0 +1,75 @@
+<!--points-detail.wxml-->
+<view class="container">
+  <!-- 积分概览 -->
+  <view class="overview-card">
+    <view class="overview-header">
+      <text class="overview-title">当前积分</text>
+    </view>
+    <view class="overview-points">
+      <text class="points-value">{{formattedPoints}}</text>
+    </view>
+    <view class="overview-stats">
+      <view class="stat-item">
+        <text class="stat-label">累计获得</text>
+        <text class="stat-value stat-earn">{{formattedTotalPoints}}</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-label">累计消耗</text>
+        <text class="stat-value stat-spend">{{formattedConsumedPoints}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 筛选标签 -->
+  <view class="filter-tabs">
+    <view class="filter-tab {{currentType === '' ? 'active' : ''}}" bindtap="selectType" data-type="">
+      <text class="filter-text">全部</text>
+    </view>
+    <view class="filter-tab {{currentType === 'earn' ? 'active' : ''}}" bindtap="selectType" data-type="earn">
+      <text class="filter-text">获取</text>
+    </view>
+    <view class="filter-tab {{currentType === 'spend' ? 'active' : ''}}" bindtap="selectType" data-type="spend">
+      <text class="filter-text">消耗</text>
+    </view>
+  </view>
+
+  <!-- 明细列表 -->
+  <view class="list-container">
+    <view class="log-item" wx:for="{{logsList}}" wx:key="_id">
+      <view class="log-left">
+        <view class="log-icon {{item.type === 'earn' ? 'earn' : 'spend'}}">
+          <text>{{item.type === 'earn' ? '+' : '-'}}</text>
+        </view>
+        <view class="log-info">
+          <text class="log-reason">{{item.reason}}</text>
+          <text class="log-time">{{item.formattedTime}}</text>
+        </view>
+      </view>
+      <view class="log-right">
+        <text class="log-amount {{item.type === 'earn' ? 'earn' : 'spend'}}">{{item.formattedAmount}}</text>
+        <text class="log-balance">{{item.formattedBalance}}</text>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-container" wx:if="{{logsList.length === 0 && !loading}}">
+      <text class="empty-icon">📋</text>
+      <text class="empty-text">暂无积分明细</text>
+    </view>
+
+    <!-- 加载状态 -->
+    <view class="loading-container" wx:if="{{loading}}">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">加载中...</text>
+    </view>
+
+    <!-- 没有更多 -->
+    <view class="no-more" wx:if="{{!hasMore && logsList.length > 0}}">
+      没有更多记录了
+    </view>
+  </view>
+
+  <!-- 底部留白 -->
+  <view class="bottom-space"></view>
+</view>

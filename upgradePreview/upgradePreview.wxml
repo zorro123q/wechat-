@@ -1,0 +1,90 @@
+<view class="container">
+  <view class="header">
+    <text class="title">权限等级说明</text>
+  </view>
+  
+  <view class="level-list">
+    <!-- 等级1 -->
+    <view class="level-item level-1">
+      <view class="level-header">
+        <text class="level-number">等级1</text>
+        <text class="level-name">基础权限</text>
+      </view>
+      <view class="level-privileges">
+        <view class="privilege-item">
+          <text class="privilege-dot"></text>
+          <text class="privilege-text">可查看普通课程</text>
+        </view>
+        <view class="privilege-item">
+          <text class="privilege-dot"></text>
+          <text class="privilege-text">参与基础积分活动</text>
+        </view>
+        <view class="privilege-item">
+          <text class="privilege-dot"></text>
+          <text class="privilege-text">浏览商品兑换列表</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 等级2 -->
+    <view class="level-item level-2">
+      <view class="level-header">
+        <text class="level-number">等级2</text>
+        <text class="level-name">进阶权限</text>
+      </view>
+      <view class="level-privileges">
+        <view class="privilege-item">
+          <text class="privilege-dot"></text>
+          <text class="privilege-text">可查看所有课程</text>
+        </view>
+        <view class="privilege-item">
+          <text class="privilege-dot"></text>
+          <text class="privilege-text">参与线下体验课</text>
+        </view>
+        <view class="privilege-item">
+          <text class="privilege-dot"></text>
+          <text class="privilege-text">享受积分兑换折扣</text>
+        </view>
+        <view class="privilege-item">
+          <text class="privilege-dot"></text>
+          <text class="privilege-text">优先参与新活动</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 等级3 -->
+    <view class="level-item level-3">
+      <view class="level-header">
+        <text class="level-number">等级3</text>
+        <text class="level-name">高级权限</text>
+      </view>
+      <view class="level-privileges">
+        <view class="privilege-item">
+          <text class="privilege-dot"></text>
+          <text class="privilege-text">可查看所有课程和资料</text>
+        </view>
+        <view class="privilege-item">
+          <text class="privilege-dot"></text>
+          <text class="privilege-text">参与专属定制课程</text>
+        </view>
+        <view class="privilege-item">
+          <text class="privilege-dot"></text>
+          <text class="privilege-text">可领取专属学习礼包</text>
+        </view>
+        <view class="privilege-item">
+          <text class="privilege-dot"></text>
+          <text class="privilege-text">享受最大积分兑换折扣</text>
+        </view>
+        <view class="privilege-item">
+          <text class="privilege-dot"></text>
+          <text class="privilege-text">专属客服支持</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="footer">
+    <text class="footer-text">等级提升需要通过系统数据库匹配</text>
+    <text class="footer-text">请联系管理员了解更多详情</text>
+  </view>
+</view>

@@ -1,0 +1,60 @@
+<view class="container">
+  <view class="toolbar">
+    <view class="left">
+      <text class="title">分类管理</text>
+      <text class="count">共 {{list.length}} 个</text>
+    </view>
+    <button class="add-btn" size="mini" bindtap="openCreate">新增</button>
+  </view>
+
+  <view class="list" wx:if="{{list.length > 0}}">
+    <view class="row" wx:for="{{list}}" wx:key="_id">
+      <view class="row-main">
+        <text class="name">{{item.icon || '📁'}} {{item.name}}</text>
+        <text class="meta">排序：{{item.sort || 0}}　状态：{{item.status === 'off' ? '停用' : '启用'}}</text>
+      </view>
+      <view class="row-actions">
+        <button class="btn" size="mini" data-item="{{item}}" bindtap="openEdit">编辑</button>
+        <button class="btn danger" size="mini" data-id="{{item._id}}" bindtap="remove">删除</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{list.length === 0 && !loading}}">
+    <text>暂无数据</text>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <view class="modal-mask" wx:if="{{showEditor}}" bindtap="closeEditor">
+    <view class="modal" catchtap="stop">
+      <view class="modal-title">{{editingId ? '编辑分类' : '新增分类'}}</view>
+      <view class="form">
+        <view class="form-row">
+          <text class="label">名称</text>
+          <input class="input" placeholder="请输入分类名称" value="{{form.name}}" bindinput="onFormInput" data-field="name" />
+        </view>
+        <view class="form-row">
+          <text class="label">图标</text>
+          <input class="input" placeholder="例如：🎁" value="{{form.icon}}" bindinput="onFormInput" data-field="icon" />
+        </view>
+        <view class="form-row">
+          <text class="label">排序</text>
+          <input class="input" placeholder="0" type="number" value="{{form.sort}}" bindinput="onFormInput" data-field="sort" />
+        </view>
+        <view class="form-row">
+          <text class="label">状态</text>
+          <picker mode="selector" range="{{statusOptions}}" value="{{statusIndex}}" bindchange="onStatusChange">
+            <view class="input">{{statusOptions[statusIndex]}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="modal-actions">
+        <button class="btn" bindtap="closeEditor">取消</button>
+        <button class="btn primary" bindtap="save">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

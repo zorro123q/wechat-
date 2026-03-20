@@ -1,0 +1,46 @@
+<view class="container">
+  <view class="toolbar">
+    <view class="search">
+      <input class="search-input" placeholder="搜索姓名/手机号/用户ID" value="{{keyword}}" bindinput="onKeywordInput" />
+      <button class="search-btn" size="mini" bindtap="reload">搜索</button>
+    </view>
+    <view class="filters">
+      <picker mode="selector" range="{{typeOptions}}" value="{{typeIndex}}" bindchange="onTypeChange">
+        <view class="filter">{{typeOptions[typeIndex]}}</view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="list" wx:if="{{list.length > 0}}">
+    <view class="row" wx:for="{{list}}" wx:key="_id">
+      <view class="row-left">
+        <image class="avatar" src="{{item.userAvatar || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+      </view>
+      <view class="row-main">
+        <view class="title">
+          <text class="name">{{item.userName || '--'}}</text>
+          <text class="phone">{{item.userPhone || '--'}}</text>
+          <text class="tag {{item.type === 'earn' ? 'earn' : 'spend'}}">{{item.type === 'earn' ? '获取' : '消耗'}}</text>
+        </view>
+        <view class="meta">
+          <text class="amount {{item.type === 'earn' ? 'earn' : 'spend'}}">{{item.type === 'earn' ? '+' : '-'}}{{item.amount}}</text>
+          <text class="balance">余额：{{item.balance}}</text>
+          <text class="time">{{item.formattedTime}}</text>
+        </view>
+        <view class="reason" wx:if="{{item.reason}}">{{item.reason}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{list.length === 0 && !loading}}">
+    <text>暂无数据</text>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <view class="more" wx:if="{{hasMore && !loading}}">
+    <button class="more-btn" size="mini" bindtap="loadMore">加载更多</button>
+  </view>
+</view>

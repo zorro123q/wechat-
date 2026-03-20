@@ -1,0 +1,339 @@
+.page {
+  min-height: 100vh;
+  position: relative;
+  background: #f3f7ff;
+  padding-bottom: 80rpx;
+  overflow: hidden;
+}
+
+.bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 820rpx;
+  overflow: hidden;
+  background: linear-gradient(180deg, #eaf5ff 0%, #d6ebff 55%, #f3f7ff 100%);
+}
+
+.bg-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.92;
+  transform-origin: 50% 0%;
+  transform: translateY(-65rpx) scale(1.25);
+}
+
+.bg-mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 820rpx;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(235, 246, 255, 0.35) 42%, rgba(243, 247, 255, 0.92) 100%);
+}
+
+.brand {
+  position: relative;
+  padding: 96rpx 40rpx 42rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14rpx;
+}
+
+.brand-logo-wrap {
+  width: 126rpx;
+  height: 126rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 18rpx 44rpx rgba(15, 31, 58, 0.18);
+  padding: 6rpx;
+  box-sizing: border-box;
+  backdrop-filter: blur(18rpx);
+}
+
+.brand-logo-ring {
+  width: 100%;
+  height: 100%;
+  border-radius: 999rpx;
+  background: linear-gradient(135deg, rgba(165, 214, 255, 1) 0%, rgba(24, 144, 255, 1) 100%);
+  padding: 4rpx;
+  box-sizing: border-box;
+}
+
+.brand-logo {
+  width: 100%;
+  height: 100%;
+  border-radius: 999rpx;
+  background: #ffffff;
+  box-shadow: 0 10rpx 24rpx rgba(24, 144, 255, 0.22);
+  border: 2rpx solid rgba(255, 255, 255, 0.85);
+}
+
+.brand-title {
+  font-size: 46rpx;
+  font-weight: 800;
+  color: #0b1b33;
+  letter-spacing: 4rpx;
+  text-shadow: 0 10rpx 26rpx rgba(15, 31, 58, 0.18);
+}
+
+.brand-subtitle {
+  font-size: 26rpx;
+  font-weight: 600;
+  letter-spacing: 2rpx;
+  color: rgba(11, 27, 51, 0.62);
+  text-shadow: 0 8rpx 18rpx rgba(15, 31, 58, 0.12);
+}
+
+.brand-pill {
+  margin-top: 10rpx;
+  padding: 14rpx 28rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 14rpx 34rpx rgba(15, 31, 58, 0.12);
+  border: 1rpx solid rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(18rpx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-pill-text {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: rgba(11, 27, 51, 0.6);
+  letter-spacing: 2rpx;
+  text-align: center;
+}
+
+.panel {
+  position: relative;
+  margin: 52rpx 26rpx 0;
+  background: rgba(255, 255, 255, 0.94);
+  border-radius: 36rpx;
+  box-shadow: 0 26rpx 80rpx rgba(15, 31, 58, 0.14);
+  border: 1rpx solid rgba(255, 255, 255, 0.78);
+  overflow: hidden;
+  backdrop-filter: blur(14rpx);
+}
+
+.panel-head {
+  position: relative;
+  padding: 38rpx 30rpx 8rpx;
+}
+
+.panel-head::before {
+  content: '';
+  position: absolute;
+  left: -140rpx;
+  right: -140rpx;
+  top: -210rpx;
+  height: 300rpx;
+  background: linear-gradient(180deg, rgba(24, 144, 255, 0.24) 0%, rgba(24, 144, 255, 0) 85%);
+  border-bottom-left-radius: 260rpx;
+  border-bottom-right-radius: 260rpx;
+}
+
+.panel-body {
+  padding: 0 26rpx 24rpx;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 70rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.tab {
+  text-align: center;
+  padding: 14rpx 0 12rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: rgba(15, 31, 58, 0.52);
+  position: relative;
+}
+
+.tab.active {
+  color: #1890ff;
+  font-weight: 700;
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  left: 22%;
+  right: 22%;
+  bottom: 2rpx;
+  height: 4rpx;
+  border-radius: 999rpx;
+  background: #1890ff;
+  opacity: 0.9;
+}
+
+.tips {
+  padding-top: 16rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: rgba(15, 31, 58, 0.55);
+}
+
+.form {
+  padding: 18rpx 10rpx 0;
+}
+
+.field {
+  padding: 22rpx 6rpx;
+  border-bottom: 1rpx solid rgba(15, 31, 58, 0.07);
+}
+
+.field-head {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 14rpx;
+}
+
+.password-mode {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 34rpx;
+  margin-bottom: 10rpx;
+}
+
+.mode-btn {
+  text-align: center;
+  font-size: 24rpx;
+  font-weight: 700;
+  color: rgba(15, 31, 58, 0.5);
+  padding: 8rpx 2rpx;
+  border-bottom: 4rpx solid transparent;
+}
+
+.mode-btn.active {
+  color: #1890ff;
+  border-bottom-color: #1890ff;
+}
+
+.field-icon {
+  width: 34rpx;
+  height: 34rpx;
+  line-height: 34rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: rgba(15, 31, 58, 0.6);
+}
+
+.field-label {
+  font-size: 26rpx;
+  color: rgba(15, 31, 58, 0.7);
+}
+
+.field-row {
+  display: flex;
+  gap: 16rpx;
+  align-items: center;
+}
+
+.field-input {
+  width: 100%;
+  font-size: 30rpx;
+  color: #0f1f3a;
+  padding: 10rpx 0;
+}
+
+.field-input-flex {
+  flex: 1;
+}
+
+.field-btn {
+  min-width: 210rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 40rpx;
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #1890ff;
+  background: rgba(24, 144, 255, 0.12);
+  border: 1rpx solid rgba(24, 144, 255, 0.18);
+  padding: 0 18rpx;
+}
+
+.field-btn[disabled] {
+  color: rgba(15, 31, 58, 0.38);
+  background: rgba(15, 31, 58, 0.06);
+  border-color: rgba(15, 31, 58, 0.06);
+}
+
+.agreement {
+  padding: 18rpx 6rpx 0;
+}
+
+.agree-label {
+  display: flex;
+  align-items: center;
+}
+
+.agree-text {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  font-size: 24rpx;
+  color: rgba(15, 31, 58, 0.6);
+}
+
+.agree-link {
+  color: #1890ff;
+}
+
+.submit-btn {
+  margin-top: 10rpx;
+  width: 100%;
+  height: 90rpx;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  font-weight: 800;
+  color: #ffffff;
+  background: linear-gradient(90deg, #a5d6ff 0%, #1890ff 100%);
+  box-shadow: 0 20rpx 46rpx rgba(24, 144, 255, 0.3);
+}
+
+.submit-btn::after {
+  border: none;
+}
+
+.submit-btn[disabled] {
+  background: rgba(15, 31, 58, 0.18);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: none;
+}
+
+.support {
+  margin-top: 26rpx;
+  padding: 10rpx 0 0;
+  text-align: center;
+}
+
+.support-text {
+  display: block;
+  font-size: 22rpx;
+  color: rgba(15, 31, 58, 0.45);
+}
+
+.support-link {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 26rpx;
+  color: #1890ff;
+}
